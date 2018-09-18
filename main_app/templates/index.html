@@ -1,0 +1,72 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>P.Photography</title>
+        <link href="{% static 'bootstrap.css' %}" rel='stylesheet' type="text/css">
+        <link href="{% static 'main.css' %}" rel='stylesheet'>
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script src="{% static 'bootstrap.js' %}"></script>
+        <script src="{% static 'main.js' %}"></script>
+    </head>
+    
+    <body>
+        <div class="container-fluid bg">
+            <div class="row whitespacerow ">
+            </div>
+            <span class="align-middle">
+            <div class="row h-100">
+                    <div class="col-md-8 offset-md-1 d-none d-md-block centerize">
+                                <div class="row justify-content-center">
+                                    {% for photo in photos %}
+                                        <div class="col-md-2">
+                                            <div class="card bg-light border-light smallcard bg-light " >
+                                                <a data-toggle="modal" data-target="#{{forloop.counter}}modal"><img class="card-img-top" src="{{photo.img_url}}" alt="{{photo.description}}"></a>
+                                                <div class="card-body">
+                                                    <h5 class="card-title text-center">{{photo.name}}</h5>
+                                                    <p class="card-text text-center">Most Liked Photo ({{photo.likes}})</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <div class="modal fade bd-example-modal-lg" id="{{forloop.counter}}modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">{{photo.name}}</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <img class="card-img-top" src="{{photo.img_url}}" alt="{{photo.description}}">
+                                                        <p>{{photo.description}}</p>    
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <p>Photographed by: {{photo.photographer}}</p>
+                                                        <button type="button" id="likes" class="btn btn-outline-danger" data-id="{{photo.photoid}}">Like ({{photo.likes}})</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                {% endfor %}
+                                </div>
+                    </div>
+                    <div class="col-md-1 col-5 offset-6 offset-md-0 vertical-center">
+                        <ul class="list-group list-group-flush ">
+                            <li class="list-group-item mainlist"><img src="{% static 'logosmall.png' %}" id="mainlogo"></li>
+                            <li class="list-group-item mainlist">
+                                <a href="/" class="noborderbutton btn btn-outline-secondary btn-block text-light text-left">Home</a></li>
+                            <li class="list-group-item mainlist">
+                                <a href="photography"  class="noborderbutton btn btn-outline-secondary btn-block text-light text-left">Photography</a></li>
+                            <li class="list-group-item mainlist">
+                                <a href="photographers"  class="noborderbutton btn btn-outline-secondary btn-block text-light text-left">Photographers</a></li>
+                        </ul>
+                    </div>
+                </div> 
+            </span>
+        </div>
+        
+    </body>
+</html>
