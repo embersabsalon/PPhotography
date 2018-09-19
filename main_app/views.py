@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Photo, Photographer
 from django.db.models import Max
-
+from django.http import HttpResponse
 
 # Create your views here.
 def index(request):
@@ -19,13 +19,15 @@ def photographers(request):
     return render(request, 'photographers.html', {'photographers' : photographers})
 
 def like_photo(request):
-    photoid = requests.GET.get('photoid',None)
+    photoide = request.GET.get('photoid',None)
     likes = 0
-    if (photoid):
-        pic = Photo.objects.get(id = int(photoid))
+    if (photoide):
+        pic = Photo.objects.get(photoid = int(photoide))
+        print(pic)
         if pic is not None:
-            likes = photoid.likes + 1
+            likes = pic.likes + 1
+            print(pic.likes + 1)
             pic.likes = likes
-            pic.save
+            pic.save()
     
     return HttpResponse(likes)

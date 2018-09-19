@@ -26,7 +26,7 @@
                                                 <a data-toggle="modal" data-target="#{{forloop.counter}}modal"><img class="card-img-top" src="{{photo.img_url}}" alt="{{photo.description}}"></a>
                                                 <div class="card-body">
                                                     <h5 class="card-title text-center">{{photo.name}}</h5>
-                                                    <p class="card-text text-center">Most Liked Photo ({{photo.likes}})</p>
+                                                    <p class="card-text text-center" id="likes{{photo.photoid}}">Most Liked Photo ({{photo.likes}})</p>
                                                 </div>
                                             </div>
                                         </div>
