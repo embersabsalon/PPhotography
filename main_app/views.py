@@ -6,8 +6,13 @@ from django.http import HttpResponse
 # Create your views here.
 def index(request):
     mostliked = Photo.objects.all().aggregate(Max('likes'))
-    photos = Photo.objects.filter(likes = mostliked.get('likes__max'))
-    return render(request, 'index.html', {'photos' : photos})
+    mostrecent = Photo.objects.all().aggregate(Max('photoid'))
+    likedphotos = Photo.objects.filter(likes = mostliked.get('likes__max'))
+    recentphotos = Photo.objects.filter(photoid = mostrecent.get('photoid__max'))
+    print("Liked: ",likedphotos)
+    print("Recent: ",recentphotos)
+    print("Returned ", {'likedphotos' : likedphotos , 'recentphotos' : recentphotos})
+    return render(request, 'index.html', {'likedphotos' : likedphotos , 'recentphotos' : recentphotos})
 
     
 def photography(request):
