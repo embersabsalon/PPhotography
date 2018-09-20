@@ -1,0 +1,41 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>P.Photography</title>
+        <link href="{% static 'bootstrap.css' %}" rel='stylesheet' type="text/css">
+        <link href="{% static 'main.css' %}" rel='stylesheet'>
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script src="{% static 'bootstrap.js' %}"></script>
+        <script src="{% static 'main.js' %}"></script>
+    </head>
+    
+    <body>
+        <div class="container-fluid bg">
+            <div class="row whitespacerow ">
+            </div>
+            <span class="align-middle">
+            <div class="row h-100">
+                    <div class="col-md-8 offset-md-1 d-none d-md-block centerize">
+                                {% block content %}
+                                {% endblock %}}
+                    </div>
+                    <div class="col-md-1 col-5 offset-6 offset-md-0 vertical-center">
+                        <ul class="list-group list-group-flush ">
+                            <li class="list-group-item mainlist"><img src="{% static 'logosmall.png' %}" id="mainlogo"></li>
+                            <li class="list-group-item mainlist">
+                                <a href="/" class="noborderbutton btn btn-outline-secondary btn-block text-light text-left">Home</a></li>
+                            <li class="list-group-item mainlist">
+                                <a href="photography"  class="noborderbutton btn btn-outline-secondary btn-block text-light text-left">Photography</a></li>
+                            <li class="list-group-item mainlist">
+                                <a href="photographers"  class="noborderbutton btn btn-outline-secondary btn-block text-light text-left">Photographers</a></li>
+                        </ul>
+                    </div>
+                </div> 
+            </span>
+        </div>
+        
+    </body>
+</html>
